@@ -6,6 +6,8 @@ do
 	if [ "${i}" != '.' ]; then
 	cd ${i};
 	pwd;
-	cd ..
+	git fetch;
+	git rebase;
+	cd ..;	
 	fi
 done
