@@ -1,0 +1,225 @@
+diff --git a/lv_conf.h b/lv_conf.h
+index 3303e81..439f96d 100644
+--- a/lv_conf.h
++++ b/lv_conf.h
+@@ -68,7 +68,7 @@
+ 
+ #if LV_USE_STDLIB_MALLOC == LV_STDLIB_BUILTIN
+     /** Size of memory available for `lv_malloc()` in bytes (>= 2kB) */
+-    #define LV_MEM_SIZE (1024 * 1024)
++    #define LV_MEM_SIZE (1024 * 1024 * 1024)
+ 
+     /** Size of the memory expand for `lv_malloc()` in bytes */
+     #define LV_MEM_POOL_EXPAND_SIZE 0
+@@ -316,7 +316,7 @@
+ #define LV_USE_DRAW_SDL 0
+ 
+ /** Use VG-Lite GPU. */
+-#define LV_USE_DRAW_VG_LITE 0
++#define LV_USE_DRAW_VG_LITE 1
+ 
+ #if LV_USE_DRAW_VG_LITE
+     /** Enable VG-Lite custom external 'gpu_init()' function */
+@@ -503,7 +503,7 @@
+ 
+ /* Use VG-Lite Simulator.
+  * - Requires: LV_USE_THORVG_INTERNAL or LV_USE_THORVG_EXTERNAL */
+-#define LV_USE_VG_LITE_THORVG  0
++#define LV_USE_VG_LITE_THORVG  1
+ 
+ #if LV_USE_VG_LITE_THORVG
+     /** Enable LVGL's blend mode support */
+@@ -519,7 +519,7 @@
+     #define LV_VG_LITE_THORVG_16PIXELS_ALIGN 1
+ 
+     /** Buffer address alignment */
+-    #define LV_VG_LITE_THORVG_BUF_ADDR_ALIGN 64
++    #define LV_VG_LITE_THORVG_BUF_ADDR_ALIGN 8
+ 
+     /** Enable multi-thread render */
+     #define LV_VG_LITE_THORVG_THREAD_RENDER 0
+@@ -990,9 +990,9 @@
+ 
+ /*SVG library
+  *  - Requires `LV_USE_VECTOR_GRAPHIC = 1` */
+-#define LV_USE_SVG 0
+-#define LV_USE_SVG_ANIMATION 0
+-#define LV_USE_SVG_DEBUG 0
++#define LV_USE_SVG 1
++#define LV_USE_SVG_ANIMATION 1
++#define LV_USE_SVG_DEBUG 1
+ 
+ /** FFmpeg library for image decoding and playing videos.
+  *  Supports all major image formats so do not enable other image decoder with it. */
+diff --git a/lvgl b/lvgl
+--- a/lvgl
++++ b/lvgl
+@@ -1 +1 @@
+-Subproject commit db62f65c22811acf36b9b83da0228d7389317283
++Subproject commit db62f65c22811acf36b9b83da0228d7389317283-dirty
+diff --git a/main/src/main.c b/main/src/main.c
+index 844686f..a65e025 100644
+--- a/main/src/main.c
++++ b/main/src/main.c
+@@ -80,7 +80,7 @@ int main(int argc, char **argv)
+   lv_init();
+ 
+   /*Initialize the HAL (display, input devices, tick) for LVGL*/
+-  hal_init(320, 480);
++  hal_init(800, 800);
+ 
+   #if LV_USE_OS == LV_OS_NONE
+ 
+@@ -89,8 +89,151 @@ int main(int argc, char **argv)
+   /* - lv_demo_benchmark(); */
+   /* - lv_demo_stress(); */
+   /* - lv_example_label_1(); */
++  /*
++lv_example_animimg_1();
++lv_example_arc_1();
++lv_example_arc_2();
++lv_example_arc_3();
++*/
++lv_example_style_14();
++/*
++lv_example_arclabel_1();
++lv_example_bar_1();
++lv_example_bar_2();
++lv_example_bar_3();
++lv_example_bar_4();
++lv_example_bar_5();
++lv_example_bar_6();
++lv_example_bar_7();
++lv_example_button_1();
++lv_example_button_2();
++lv_example_button_3();
++
++lv_example_buttonmatrix_1();
++lv_example_buttonmatrix_2();
++lv_example_buttonmatrix_3();
++
++lv_example_calendar_1();
++lv_example_calendar_2();
++
++lv_example_canvas_1();
++lv_example_canvas_2();
++lv_example_canvas_3();
++lv_example_canvas_4();
++lv_example_canvas_5();
++lv_example_canvas_6();
++lv_example_canvas_7();
++lv_example_canvas_8();
++lv_example_canvas_9();
++lv_example_canvas_10();
++lv_example_canvas_11();
++
++lv_example_chart_1();
++lv_example_chart_2();
++lv_example_chart_3();
++lv_example_chart_4();
++lv_example_chart_5();
++lv_example_chart_6();
++lv_example_chart_7();
++lv_example_chart_8();
++
++lv_example_checkbox_1();
++lv_example_checkbox_2();
++
++lv_example_dropdown_1();
++lv_example_dropdown_2();
++lv_example_dropdown_3();
++
++lv_example_image_1();
++lv_example_image_2();
++lv_example_image_3();
++lv_example_image_4();
++lv_example_image_5();
++
++lv_example_imagebutton_1();
++
++lv_example_keyboard_1();
++lv_example_keyboard_2();
++lv_example_keyboard_3();
++
++lv_example_label_1();
++lv_example_label_2();
++lv_example_label_3();
++lv_example_label_4();
++lv_example_label_5();
++lv_example_label_6();
++
++lv_example_led_1();
++
++lv_example_line_1();
++
++lv_example_list_1();
++lv_example_list_2();
++
++lv_example_lottie_1();
++lv_example_lottie_2();
++
++lv_example_menu_1();
++lv_example_menu_2();
++lv_example_menu_3();
++lv_example_menu_4();
++lv_example_menu_5();
++
++lv_example_msgbox_1();
++lv_example_msgbox_2();
++
++lv_example_obj_1();
++lv_example_obj_2();
++lv_example_obj_3();
++
++lv_example_roller_1();
++lv_example_roller_2();
++lv_example_roller_3();
++
++lv_example_scale_1();
++lv_example_scale_2();
++lv_example_scale_3();
++lv_example_scale_4();
++lv_example_scale_5();
++lv_example_scale_6();
++lv_example_scale_7();
++lv_example_scale_8();
++lv_example_scale_9();
++lv_example_scale_10();
++lv_example_scale_11();
++lv_example_scale_12();
++
++lv_example_slider_1();
++lv_example_slider_2();
++lv_example_slider_3();
++lv_example_slider_4();
++
++lv_example_span_1();
++
++lv_example_spinbox_1();
++
++lv_example_spinner_1();
++
++lv_example_switch_1();
++lv_example_switch_2();
++
++lv_example_table_1();
++lv_example_table_2();
++
++lv_example_tabview_1();
++lv_example_tabview_2();
++
++lv_example_textarea_1();
++lv_example_textarea_2();
++lv_example_textarea_3();
++lv_example_textarea_4();
++lv_example_tileview_1();
++lv_example_win_1();
++*/
++
++//    lv_example_arc_3();
+   /* - etc. */
+-  lv_demo_widgets();
++  /*lv_demo_widgets();*/
+ 
+   while(1) {
+     /* Periodically call the lv_task handler.
