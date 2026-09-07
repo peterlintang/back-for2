@@ -1,0 +1,14 @@
+@echo off
+chcp 65001 >nul
+title 恢复系统默认服务
+
+echo 正在恢复被禁用的服务...
+sc config SysMain start= auto
+sc config WSearch start= delayed-auto
+sc config DiagTrack start= auto
+sc config dmwappushservice start= delayed-auto
+sc config TrkWks start= auto
+sc config PcaSvc start= auto
+
+echo 恢复完成！
+pause
