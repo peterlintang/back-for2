@@ -16,3 +16,6 @@ hwinfo 系统硬件信息检测与实时监控
 
 跑甜甜圈時： 1080P 解析度、關閉抗鋸齒、狠狠烤 15 分鐘看會不會死機。
 進遊戲實測時： 1080P 解析度、中低畫質、關閉光追、開啟 FSR 縮放，觀察打團時的最低幀率是否流暢。
+
+systeminfo > "%userprofile%\Desktop\sys_info.txt" 生成系统信息
+tasklist /v > "%userprofile%\Desktop\task_list.txt" 生成系统运行进程信息
