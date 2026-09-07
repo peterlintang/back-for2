@@ -11,3 +11,4 @@ gpu-z 查看gpu信息
 furmark 显卡压力稳定测试
 hdtunepro  硬碟檢測、維護與效能測試
 ipdt 英特尔处理器诊断工具
+hwinfo 系统硬件信息检测与实时监控
